@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.List;
 
 public class Pb5 {
     // 소수 구하기
@@ -29,6 +28,8 @@ public class Pb5 {
     public boolean[] Solution(int n){
         boolean[] answer = new boolean[n];
         Arrays.fill(answer, true);
+        answer[0] = false;
+        answer[1] = false;
         for (int i = 2; i < n; i++) {
             for (int j = 2; i*j < n; j++) {
                 answer[i*j] = false;
@@ -36,5 +37,4 @@ public class Pb5 {
         }
         return answer;
     } 
-    
 }
