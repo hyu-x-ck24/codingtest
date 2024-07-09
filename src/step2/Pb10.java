@@ -41,11 +41,11 @@ public class Pb10 {
             for (int j = 1; j < n + 1; j++) {
                 int[] arr = new int[5];
                 arr[0] = newArgs[i][j];
-                arr[1] = newArgs[i-1][j];
-                arr[2] = newArgs[i+1][j];
-                arr[3] = newArgs[i][j+1];
-                arr[4] = newArgs[i][j-1];
-                if (this.IsMountain(arr)){
+                arr[1] = newArgs[i - 1][j];
+                arr[2] = newArgs[i + 1][j];
+                arr[3] = newArgs[i][j + 1];
+                arr[4] = newArgs[i][j - 1];
+                if (this.IsMountain(arr)) {
                     answer++;
                 }
             }
