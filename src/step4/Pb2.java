@@ -13,30 +13,30 @@ public class Pb2 {
     }
 
     public String Solution(String str1, String str2) {
-        HashMap <Character, Integer> str1Map = new HashMap<>();
-        HashMap <Character, Integer> str2Map = new HashMap<>();
-        for (char tmp : str1.toCharArray()) {
-            str1Map.put(tmp, str1Map.getOrDefault(tmp, 0)+1));
+        char[] arr1 = str1.toCharArray(), arr2 = str2.toCharArray();
+        HashMap<Character, Integer> map1 = new HashMap<>();
+        HashMap<Character, Integer> map2 = new HashMap<>();
+
+        for (char tmp : arr1) {
+            map1.put(tmp, map1.getOrDefault(tmp, 0) + 1);
         }
-        for (char tmp : str2.toCharArray()) {
-            str2Map.put(tmp, str2Map.getOrDefault(tmp, 0)+1));
+        for (char tmp : arr2) {
+            map2.put(tmp, map2.getOrDefault(tmp, 0) + 1);
         }
-        if (this.isTwoHashMapComp(str1Map, str2Map)){
-            return "YES";
+
+        if (!isTwoHashMapComp(map1, map2)) {
+            return "NO";
         }
-        return "NO";
+
+        return "YES";
     }
 
-    public boolean isTwoHashMapComp(HashMap<Character, Integer> str1Map, HashMap<Character, Integer> str2Map) {
-        if (str1Map.size() != str2Map.size()) {
-            return false;
-        }
-        for (Map.Entry<Character, Integer> entry : str1Map.entrySet()) {
-            if (!str2Map.containsKey(entry.getKey()) || !str2Map.get(entry.getKey()).equals(entry.getValue())) {
+    public boolean isTwoHashMapComp(HashMap<Character, Integer> map1, HashMap<Character, Integer> map2) {
+        for (Map.Entry<Character, Integer> entry : map1.entrySet()) {
+            if (!map2.containsKey(entry.getKey()) || map2.get(entry.getKey()) != map1.get(entry.getKey())) {
                 return false;
             }
         }
-
         return true;
     }
 
