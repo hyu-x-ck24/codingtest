@@ -9,7 +9,6 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Pb3 {
-    int cnt = 0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader kb = new BufferedReader(new InputStreamReader(System.in));
@@ -47,41 +46,19 @@ public class Pb3 {
             }
         }
 
+        int cnt = 0; // cnt를 지역 변수로 선언
         for (int move : moves) {
             if (!boardStack.get(move - 1).isEmpty()) {
-                answer.push(boardStack.get(move - 1).pop());
-                answer = PopStack(answer);
+                int doll = boardStack.get(move - 1).pop();
+                if (!answer.isEmpty() && answer.peek() == doll) {
+                    answer.pop();
+                    cnt += 2;
+                } else {
+                    answer.push(doll);
+                }
             }
         }
 
         return cnt;
-    }
-
-    public Stack<Integer> PopStack(Stack<Integer> stackData) {
-        int a = 0;
-        int b = 0;
-        if (!stackData.isEmpty()) {
-            a = stackData.pop();
-        }
-        if (!stackData.isEmpty()) {
-            b = stackData.pop();
-        }
-        if (a!= 0 && b!=0){
-            if (a == b) {
-                PopStack(stackData);
-                cnt=cnt+2;
-            } else {
-                stackData.push(b);
-                stackData.push(a);
-            }
-        } else {
-            if (b > 0) {
-                stackData.push(b);
-            }
-            if (a > 0) {
-                stackData.push(a);
-            }
-        }
-        return stackData;
     }
 }
