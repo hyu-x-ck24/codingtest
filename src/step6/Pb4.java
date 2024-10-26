@@ -26,11 +26,14 @@ public class Pb4 {
         for(int inputValue: inputValues) {
             boolean isCacheMiss = true;
             for(int i = 0; i < cacheSize; i++) {
-                if (isCacheMiss && cache[i] == inputValue) {
+                if (cache[i] == inputValue) {
                     isCacheMiss = false;
-                    int tmp = cache[i];
-                    cache[i] = cache[0];
-                    cache[0] = tmp;
+                    // Move the hit element to the front
+                    for (int j = i; j > 0; j--) {
+                        cache[j] = cache[j - 1];
+                    }
+                    cache[0] = inputValue;
+                    break;
                 }
             }
             if (isCacheMiss) {
@@ -45,10 +48,10 @@ public class Pb4 {
         }
 
         StringBuilder answer = new StringBuilder();
-        for (int num: cache) {
-            answer.append(num);
+        for (int i = 0; i < cacheSize; i++) {
+            answer.append(cache[i]);
             answer.append(' ');
         }
-        return String.valueOf(answer);
+        return answer.toString().trim();
     }
 }
